@@ -1,19 +1,19 @@
 // глупый компонент который просто рендерит
 
 import { useSelector,  useDispatch } from "react-redux"
-import { deleteContact } from "redux/operations";
-import { selectVisibleContacts } from "redux/selectors";
+import { deleteContact } from "redux/contacts/operations";
+import { selectVisibleContacts } from "redux/contacts/selectors";
 
 export const ContactList = () => {
     const dispatch = useDispatch();
     const contacts = useSelector(selectVisibleContacts)
-    console.log(contacts)
+    console.log(contacts);
 
     return (
         // console.log(contacts)
         <ul>
-            {contacts && contacts.map(({ nameValue, numberValue, id }) =>
-                <li key={id}>{nameValue} {numberValue}
+            {contacts && contacts.map(({ name, number, id }) =>
+                <li key={id}>{name} {number}
                     <button type="button"
                         onClick={() => dispatch(deleteContact(id))}
                     >Удалить</button>

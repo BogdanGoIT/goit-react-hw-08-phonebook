@@ -44,7 +44,7 @@ const contactsSlice = createSlice({
       state.isLoading = false;
       state.error = null;
 
-      const index = state.items.findIndex(item => item.id === action.payload.id);
+      const index = state.items.findIndex(item => item.id === action.meta.arg);
       state.items.splice(index, 1);
 
       // state.items = state.items.filter(item => item.id !== action.payload)

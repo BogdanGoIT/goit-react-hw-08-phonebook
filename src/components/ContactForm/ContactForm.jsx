@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectContacts } from "redux/selectors";
-import { addContact } from "redux/operations";
+import { addContact } from "redux/contacts/operations";
+import { selectContacts } from "redux/contacts/selectors";
 
 export function ContactForm() {
     const dispatch = useDispatch();
@@ -10,21 +10,21 @@ export function ContactForm() {
     const handleSubmit = e => {
         e.preventDefault();
 
-        const namesArray = contacts.map(contact => contact.nameValue);
+        const namesArray = contacts.map(contact => contact.name);
         console.log(namesArray);
 
         const form = e.target;
 
-        const nameValue = e.target.elements.name.value;  
-        const numberValue = e.target.elements.number.value;
+        const name = form.elements.name.value;  
+        const number = form.elements.number.value;
 
-        if (namesArray.includes(nameValue)) {
+        if (namesArray.includes(name)) {
             return alert("Rosie Simpson is already in contacts");
         }
 
         dispatch(addContact({
-            nameValue,
-            numberValue,
+            name,
+            number,
         }));
 
         form.reset()
