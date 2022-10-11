@@ -43,7 +43,7 @@ const contactsSlice = createSlice({
     [deleteContact.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-
+      
       const index = state.items.findIndex(item => item.id === action.meta.arg);
       state.items.splice(index, 1);
 
