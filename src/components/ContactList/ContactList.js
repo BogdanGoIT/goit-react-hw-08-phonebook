@@ -3,6 +3,7 @@
 import { useSelector,  useDispatch } from "react-redux"
 import { deleteContact } from "redux/contacts/operations";
 import { selectVisibleContacts } from "redux/contacts/selectors";
+import Chip from '@mui/material/Chip';
 
 export const ContactList = () => {
     const dispatch = useDispatch();
@@ -14,25 +15,14 @@ export const ContactList = () => {
         <ul>
             {contacts && contacts.map(({ name, number, id }) =>
                 <li key={id}>{name} {number}
-                    <button type="button"
+                    <Chip label="Deletable"
+                        onDelete={() => dispatch(deleteContact(id))}
                         onClick={() => dispatch(deleteContact(id))}
-                    >Удалить</button>
+                    />
+                    {/* <Chip label="Delete" variant="outlined" onDelete={() => dispatch(deleteContact(id))}
+                        onClick={() => dispatch(deleteContact(id))}
+                    /> */}
                 </li>)}
         </ul>
     )
 }
-
-    // const contacts = useSelector(selectContacts);
-    // const filterName = useSelector(selectFilter);
-    // console.log(filterName);
-
-    // const getFilterdContacts = () => {
-    //     const normalizedFilter = filterName.toLowerCase();
-
-    //     return contacts.filter(contact => 
-    //     contact.nameValue.toLowerCase().includes(normalizedFilter),
-    //     );
-
-    // }
-
-    // const filteredContacts = getFilterdContacts();

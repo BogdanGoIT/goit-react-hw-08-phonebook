@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addContact } from "redux/contacts/operations";
 import { selectContacts } from "redux/contacts/selectors";
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 export function ContactForm() {
     const dispatch = useDispatch();
@@ -32,10 +35,20 @@ export function ContactForm() {
     }
     
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                <p>Name</p>
-                <input
+            <Box
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    '& > :not(style)': { m: 1 },
+                }}
+            >
+            <form onSubmit={handleSubmit}>
+
+
+            <TextField
+                    helperText="Please enter your name"
+                    id="demo-helper-text-aligned"
+                    label="Name"
                 
                     type="text"
                     name="name"
@@ -44,20 +57,20 @@ export function ContactForm() {
                     
                     required
                 />
-            </label>
             <br />
-            <label>
-              <p>Number</p>
-              <input
+              <TextField
+                    helperText=" "
+                    id="demo-helper-text-aligned-no-helper"
+                    label="Number"
+                    
                     type="tel"
                     name="number"
                     pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                     title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                     required
               />
-            </label>
                 <br />
-            <button type="submit">Add contact</button>
+            <Button variant="contained" type="submit">Add contact</Button>
         </form>
-        );
+        </Box>);
     }
